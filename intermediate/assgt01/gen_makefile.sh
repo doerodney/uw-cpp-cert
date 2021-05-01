@@ -1,7 +1,7 @@
 #!/bin/bash
 # Configure these:
 cc="g++"
-cflags="-g -Wall -O3 -std=c++17"
+cflags="-g -Wall -O3 -std=c++2a"
 target="unittests"
 
 # Generate line of object files:

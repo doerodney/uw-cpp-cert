@@ -2,9 +2,8 @@
 
 using namespace HuntTheWumpus;
 
-DenizenIdentifier::DenizenIdentifier(Category category, size_t serial) 
-: m_category(category), m_serial(serial) 
-{
+DenizenIdentifier::DenizenIdentifier(Category category, int instance) 
+: m_category(category), m_instance(instance) {
 }
 
 std::strong_ordering DenizenIdentifier::operator<=>(const DenizenIdentifier &rhs) const {
@@ -13,11 +12,11 @@ std::strong_ordering DenizenIdentifier::operator<=>(const DenizenIdentifier &rhs
     } else if (m_category != rhs.m_category) {
         return m_category <=> rhs.m_category;
     } else {
-        return m_serial <=> rhs.m_serial;
+        return m_instance <=> rhs.m_instance;
     }
 }
 
 bool DenizenIdentifier::operator==(const DenizenIdentifier &rhs) const {
-    return ((m_category == rhs.m_category) && (m_serial == rhs.m_serial));
+    return ((m_category == rhs.m_category) && (m_instance == rhs.m_instance));
 }
     

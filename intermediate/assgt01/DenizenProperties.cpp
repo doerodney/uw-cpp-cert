@@ -1,6 +1,6 @@
 #include "DenizenProperties.h"
 
-using namespace HuntTheWumpus;
+namespace HuntTheWumpus {
 
 DenizenProperties::DenizenProperties(
     bool carryable, bool fatalToWumpus, bool fatalToHunter, 
@@ -10,3 +10,6 @@ DenizenProperties::DenizenProperties(
     m_reportMovement(reportMovement) {
 
 }
+
+
+}  // namespace HuntTheWumpus

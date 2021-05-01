@@ -1,12 +1,17 @@
-#ifndef INC_DENIZEN_PROPERTIES_H
-#define INC_DENIZEN_PROPERTIES_H
+#ifndef DENIZEN_PROPERTIES_H
+#define DENIZEN_PROPERTIES_H
 
 namespace HuntTheWumpus {
 
-struct DenizenProperties {
+class DenizenProperties 
+{
+public:
     DenizenProperties(bool carryable, bool fatalToWumpus, bool fatalToHunter, 
         bool isEdible, bool reportMovement);
 
+    DenizenProperties(const DenizenProperties&) = default;
+
+public:
     bool m_carryable;
     bool m_fatalToWumpus;
     bool m_fatalToHunter;
@@ -14,5 +19,5 @@ struct DenizenProperties {
     bool m_reportMovement;
 };
 
-}
+}  // namespace HuntTheWumpus
 #endif
