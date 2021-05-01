@@ -9,7 +9,7 @@ public:
     DenizenProperties(bool carryable, bool fatalToWumpus, bool fatalToHunter, 
         bool isEdible, bool reportMovement);
 
-    DenizenProperties(const DenizenProperties&) = default;
+    //DenizenProperties(const DenizenProperties&) = default;
 
 public:
     bool m_carryable;
