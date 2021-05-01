@@ -10,7 +10,6 @@ class Bat : public Denizen {
     ~Bat() = default;
     Bat& operator=(const Bat &rhs) = default;
 
-    int GetPriority();
     void ObserveCaveEntrance();
     void ReportPresence();
 

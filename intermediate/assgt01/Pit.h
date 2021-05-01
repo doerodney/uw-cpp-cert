@@ -9,8 +9,7 @@ class Pit : public Denizen {
     Pit(const Pit&) = default;
     ~Pit() = default;
     Pit& operator=(const Pit &rhs) = default;
-
-    int GetPriority();
+    
     void ObserveCaveEntrance();
     void ReportPresence();
 

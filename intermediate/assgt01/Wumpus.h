@@ -10,7 +10,6 @@ class Wumpus : public Denizen {
     ~Wumpus() = default;
     Wumpus& operator=(const Wumpus &rhs) = default;
 
-    int GetPriority();
     void ObserveCaveEntrance();
     void ReportPresence();
 

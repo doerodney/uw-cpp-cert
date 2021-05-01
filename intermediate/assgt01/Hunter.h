@@ -10,7 +10,6 @@ class Hunter : public Denizen {
     ~Hunter() = default;
     Hunter& operator=(const Hunter &rhs) = default;
 
-    int GetPriority();
     void ObserveCaveEntrance();
     void ReportPresence();
 
