@@ -1,5 +1,5 @@
 #ifndef HUNTER_H
-#define PIT_H
+#define HUNTER_H
 #include "Denizen.h"
 
 namespace HuntTheWumpus {
@@ -15,7 +15,6 @@ class Hunter : public Denizen {
     void ReportPresence();
 
 };
-
 
 } // namespace HuntTheWumpus
 

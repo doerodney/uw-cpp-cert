@@ -1,5 +1,5 @@
 #ifndef WUMPUS_H
-#define Wumpus_H
+#define WUMPUS_H
 #include "Denizen.h"
 
 namespace HuntTheWumpus {
@@ -15,7 +15,6 @@ class Wumpus : public Denizen {
     void ReportPresence();
 
 };
-
 
 } // namespace HuntTheWumpus
 
