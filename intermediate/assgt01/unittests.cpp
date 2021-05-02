@@ -1,9 +1,83 @@
 #include "TestHarness.h"
+#include <compare>
 
+#include "Arrow.h"
+#include "Bat.h"
+#include "Hunter.h"
+#include "Pit.h"
 #include "Wumpus.h"
 
 namespace TestHuntTheWumpus
 {
+	TEST(ArrowSuite, Arrow_HasProperAttributes)
+    {
+        const HuntTheWumpus::Arrow arrow(0);
+
+        const auto &properties = arrow.Properties();
+
+        CHECK(!properties.m_carryableByBats);
+        CHECK(properties.m_fatalToWumpus);
+		CHECK(properties.m_fatalToHunter);
+		CHECK(!properties.m_isEdible);
+        CHECK(!properties.m_reportMovement);
+        
+        const auto& id = arrow.GetIdentifier();
+
+        CHECK_EQUAL(HuntTheWumpus::Category::Arrow, id.m_category);
+    }
+
+	TEST(BatSuite, Bat_HasProperAttributes)
+    {
+        const HuntTheWumpus::Bat bat(0);
+
+        const auto &properties = bat.Properties();
+
+        CHECK(!properties.m_carryableByBats);
+        CHECK(!properties.m_fatalToWumpus);
+		CHECK(!properties.m_fatalToHunter);
+		CHECK(!properties.m_isEdible);
+        CHECK(!properties.m_reportMovement);
+        
+        const auto& id = bat.GetIdentifier();
+
+        CHECK_EQUAL(HuntTheWumpus::Category::Bat, id.m_category);
+    }
+
+	TEST(HunterSuite, Hunter_HasProperAttributes)
+    {
+        const HuntTheWumpus::Hunter hunter(0);
+
+        const auto &properties = hunter.Properties();
+
+        CHECK(properties.m_carryableByBats);
+        CHECK(!properties.m_fatalToWumpus);
+		CHECK(!properties.m_fatalToHunter);
+		CHECK(properties.m_isEdible);
+        CHECK(properties.m_reportMovement);
+        
+        const auto& id = hunter.GetIdentifier();
+
+        CHECK_EQUAL(HuntTheWumpus::Category::Hunter, id.m_category);
+    }
+
+	TEST(PitSuite, Pit_HasProperAttributes)
+    {
+        const HuntTheWumpus::Pit pit(0);
+
+        const auto &properties = pit.Properties();
+
+        CHECK(!properties.m_carryableByBats);
+        CHECK(!properties.m_fatalToWumpus);
+		CHECK(properties.m_fatalToHunter);
+		CHECK(!properties.m_isEdible);
+        CHECK(!properties.m_reportMovement);
+        
+        const auto& id = pit.GetIdentifier();
+
+        CHECK_EQUAL(HuntTheWumpus::Category::Pit, id.m_category);
+    }
+
+
     TEST(WumpusSuite, Wumpus_HasProperAttributes)
     {
         const HuntTheWumpus::Wumpus wumpus(0);
@@ -11,11 +85,11 @@ namespace TestHuntTheWumpus
         const auto &properties = wumpus.Properties();
 
         CHECK(!properties.m_carryableByBats);
-        CHECK(!properties.m_isEdible);
-        CHECK(!properties.m_reportMovement);
-        CHECK(properties.m_fatalToHunter);
         CHECK(!properties.m_fatalToWumpus);
-
+		CHECK(properties.m_fatalToHunter);
+		CHECK(!properties.m_isEdible);
+        CHECK(!properties.m_reportMovement);
+        
         const auto& id = wumpus.GetIdentifier();
 
         CHECK_EQUAL(HuntTheWumpus::Category::Wumpus, id.m_category);

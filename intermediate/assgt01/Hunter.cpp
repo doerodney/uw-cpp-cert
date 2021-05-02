@@ -3,7 +3,7 @@
 namespace HuntTheWumpus{
 
 Hunter::Hunter(int instance)
-: Denizen({Category::Hunter, instance}, {true, false, true, true, true}, -1){
+: Denizen({Category::Hunter, instance}, {true, false, false, true, true}, -1){
 
 }
 
