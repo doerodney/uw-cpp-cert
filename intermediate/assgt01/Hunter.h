@@ -4,7 +4,9 @@
 
 namespace HuntTheWumpus {
 
-class Hunter : public Denizen {
+class Hunter : public Denizen 
+{
+public:
     Hunter(int instance);
     Hunter(const Hunter&) = default;
     ~Hunter() = default;

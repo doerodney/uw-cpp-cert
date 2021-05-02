@@ -4,7 +4,9 @@
 
 namespace HuntTheWumpus {
 
-class Bat : public Denizen {
+class Bat : public Denizen 
+{
+public:
     Bat(int instance);
     Bat(const Bat&) = default;
     ~Bat() = default;

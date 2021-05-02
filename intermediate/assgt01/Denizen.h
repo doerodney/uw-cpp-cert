@@ -15,6 +15,9 @@ public:
     Denizen() = default;
     ~Denizen() = default;
 
+    const DenizenProperties& Properties() const;
+    const DenizenIdentifier& GetIdentifier() const;
+
     virtual void EnterCave() {};
     virtual int GetPriority() const;
     virtual void ObserveCaveEntrance() {};

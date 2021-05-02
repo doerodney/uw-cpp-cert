@@ -12,7 +12,7 @@ public:
     //DenizenProperties(const DenizenProperties&) = default;
 
 public:
-    bool m_carryable;
+    bool m_carryableByBats;
     bool m_fatalToWumpus;
     bool m_fatalToHunter;
     bool m_isEdible;

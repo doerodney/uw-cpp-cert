@@ -27,9 +27,8 @@ public:
     std::strong_ordering operator<=>(const DenizenIdentifier &rhs) const;
     bool operator==(const DenizenIdentifier &rhs) const;
 
-private:
-        Category m_category;
-        int m_instance;
+    Category m_category;
+    int m_instance;
 
     friend struct DenizenIdentifierHasher;
 };

@@ -4,7 +4,9 @@
 
 namespace HuntTheWumpus {
 
-class Arrow : public Denizen {
+class Arrow : public Denizen 
+{
+public:
     Arrow(int instance);
     Arrow(const Arrow&) = default;
     ~Arrow() = default;

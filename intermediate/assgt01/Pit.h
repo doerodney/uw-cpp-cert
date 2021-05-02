@@ -4,7 +4,9 @@
 
 namespace HuntTheWumpus {
 
-class Pit : public Denizen {
+class Pit : public Denizen 
+{
+public:
     Pit(int instance);
     Pit(const Pit&) = default;
     ~Pit() = default;

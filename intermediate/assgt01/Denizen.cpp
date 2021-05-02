@@ -52,6 +52,14 @@ Denizen::Denizen(
 
 }
 
+const DenizenProperties& Denizen::Properties() const {
+    return m_properties;
+}
+
+const DenizenIdentifier& Denizen::GetIdentifier() const {
+    return m_identifier;
+}
+
 int Denizen::GetPriority() const {
     return m_priority;
 }
