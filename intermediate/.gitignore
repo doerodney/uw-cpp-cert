@@ -1,0 +1,6 @@
+*.o
+*.cc
+*.log
+*.7z
+unittests
+
