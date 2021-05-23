@@ -1,5 +1,5 @@
 #pragma once
-
+#include "TestHelperGameStateMonitor.h"
 #include "TestHelperRandomProvider.h"
 #include "TestHelperDungeon.h"
 
@@ -8,12 +8,13 @@
 namespace TestHuntTheWumpus
 {
     struct TestEnvironment
-    {
-        TestEnvironment();
+    {    
+        TestEnvironment() = default;
 
         TestRandomProvider m_provider;
+        TestGameStateMonitor m_gameStateMonitor;
 
-        HuntTheWumpus::Context m_context { m_provider };
+        HuntTheWumpus::Context m_context {m_provider, m_gameStateMonitor};
 
         TestDungeon m_dungeon;
     };

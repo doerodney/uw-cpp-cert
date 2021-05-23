@@ -24,5 +24,10 @@ namespace TestHuntTheWumpus
         TestDungeon(TestDungeon&&) = delete;
         TestDungeon& operator=(const TestDungeon&) = delete;
         TestDungeon& operator=(TestDungeon&&) = delete;
+
+        // Added "concrete" implementations of abstract methods:
+        void Move(const HuntTheWumpus::DenizenIdentifier &identifier, int destinationCave) override {};
+        void MoveDenizenRandomly(const HuntTheWumpus::DenizenIdentifier &identifier ) override {};
+
     };
 }

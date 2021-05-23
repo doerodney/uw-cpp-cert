@@ -3,8 +3,8 @@ CFLAGS = -g -Wall -O3 -std=c++2a
 
 default: unittests
 
-unittests: Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o Pit.o Test.o TestRegistry.o TestResult.o UnitTestHuntTheWumpus.o unittests.o WFailure.o Wumpus.o 
-	$(CC) $(CFLAGS) -o unittests Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o Pit.o Test.o TestRegistry.o TestResult.o UnitTestHuntTheWumpus.o unittests.o WFailure.o Wumpus.o 
+unittests: Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o Pit.o TestCave.o Test.o TestRegistry.o TestResult.o UnitTestHuntTheWumpus.o unittests.o WFailure.o Wumpus.o 
+	$(CC) $(CFLAGS) -o unittests Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o Pit.o TestCave.o Test.o TestRegistry.o TestResult.o UnitTestHuntTheWumpus.o unittests.o WFailure.o Wumpus.o 
 
 Arrow.o: Arrow.cpp Arrow.h Denizen.h
 	$(CC) $(CFLAGS) -c Arrow.cpp
@@ -33,6 +33,13 @@ Hunter.o: Hunter.cpp Hunter.h Denizen.h Arrow.h Cave.h Context.h \
 
 Pit.o: Pit.cpp Pit.h Denizen.h Context.h GameStateObservation.h
 	$(CC) $(CFLAGS) -c Pit.cpp
+
+TestCave.o: TestCave.cpp TestHarness.h Test.h TestResult.h Failure.h \
+ WFailure.h TestRegistry.h Bat.h Denizen.h Cave.h TestHelperDungeon.h \
+ Dungeon.h Context.h RandomProvider.h TestHelperTestEnvironment.h \
+ TestHelperGameStateMonitor.h GameStateObservation.h \
+ TestHelperRandomProvider.h
+	$(CC) $(CFLAGS) -c TestCave.cpp
 
 Test.o: Test.cpp Test.h TestResult.h Failure.h WFailure.h TestRegistry.h
 	$(CC) $(CFLAGS) -c Test.cpp
