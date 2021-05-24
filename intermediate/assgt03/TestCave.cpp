@@ -17,9 +17,10 @@ namespace TestHuntTheWumpus
     TestEnvironment env;
 
     // Create a Bat to move in and out of the cave:
-    const HuntTheWumpus::Bat bat(0, env.m_context);
-    const auto b = std::make_shared<HuntTheWumpus::Bat>(0, env.m_context);
-
+    int batInstance = 0;
+    const auto bat = std::make_shared<HuntTheWumpus::Bat>(batInstance, env.m_context);
+    const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
+    
     // Create a Cave:
     HuntTheWumpus::Cave cave(1, dungeon);
 
@@ -29,11 +30,16 @@ namespace TestHuntTheWumpus
         CHECK_EQUAL(false, cave.HasDenizens());
 
         // Add a denizen to the cave:
-        cave.AddDenizen(b, true);
+        cave.AddDenizen(bat, true);
 
         // Verify that the cave now has a denizen:
         CHECK_EQUAL(true, cave.HasDenizens());
 
+        // Remove the denizen:
+        cave.RemoveDenizen(batId);
+
+        // Verify that cave has no denizens:
+        CHECK_EQUAL(false, cave.HasDenizens());
     }
 
 }
