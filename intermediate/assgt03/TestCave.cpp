@@ -10,22 +10,22 @@
 
 namespace TestHuntTheWumpus
 {
-    // Create a test dungeon:
-    TestDungeon dungeon;
-
-    // Create a test environment:
-    TestEnvironment env;
-
-    // Create a Bat to move in and out of the cave:
-    int batInstance = 0;
-    const auto bat = std::make_shared<HuntTheWumpus::Bat>(batInstance, env.m_context);
-    const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
-    
-    // Create a Cave:
-    HuntTheWumpus::Cave cave(1, dungeon);
-
     TEST(CaveSuite, Cave_HasDenizens)
     {
+        // Create a test dungeon:
+        TestDungeon dungeon;
+
+        // Create a test environment:
+        TestEnvironment env;
+
+        // Create a Bat to move in and out of the cave:
+        int batInstance = 0;
+        const auto bat = std::make_shared<HuntTheWumpus::Bat>(batInstance, env.m_context);
+        const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
+        
+        // Create a Cave:
+        HuntTheWumpus::Cave cave(1, dungeon);
+
         // Verify that new cave has no denizens:
         CHECK_EQUAL(false, cave.HasDenizens());
 
@@ -40,6 +40,18 @@ namespace TestHuntTheWumpus
 
         // Verify that cave has no denizens:
         CHECK_EQUAL(false, cave.HasDenizens());
+    }
+
+    TEST(CaveSuite, CaveConstruction)
+    {
+        TestEnvironment env;
+
+        const HuntTheWumpus::Cave cave(57, env.m_dungeon);
+
+        CHECK_EQUAL(57, cave.GetCaveId());
+        CHECK_EQUAL(&env.m_dungeon, &cave.GetDungeon());
+
+        CHECK(cave.GetConnectedIds().empty());
     }
 
 }
