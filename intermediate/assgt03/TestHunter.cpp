@@ -1,7 +1,8 @@
 #include "TestHarness.h"
 
-#include "Hunter.h"
 #include "Arrow.h"
+#include "Dungeon.h"
+#include "Hunter.h"
 
 #include "TestHelperTestEnvironment.h"
 
@@ -29,6 +30,7 @@ namespace TestHuntTheWumpus
 
         // Add the hunter to the left cave:
         leftCave->AddDenizen(hunter, true);
+        hunter->EnterCave(leftCave);
 
         // Verify that the hunter is in the left cave:
         hasDenizen = leftCave->HasDenizen(hunterId);
@@ -38,13 +40,12 @@ namespace TestHuntTheWumpus
         hasDenizen = rightCave->HasDenizen(hunterId);
         CHECK_EQUAL(false, hasDenizen);
 
-        // Remove the hunter from the left cave:
-        leftCave->RemoveDenizen(hunterId);
+        // Move the hunter to the right cave.
+        env.m_dungeon.Move(hunterId, rightCaveInstance);
+
+        // Verify that the hunter is NOT in the left cave:
         hasDenizen = leftCave->HasDenizen(hunterId);
         CHECK_EQUAL(false, hasDenizen);
-
-        // Add the hunter to the right cave:
-        rightCave->AddDenizen(hunter, true);
 
         // Verify that the hunter is in the right cave:
         hasDenizen = rightCave->HasDenizen(hunterId);

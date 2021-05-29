@@ -1,5 +1,6 @@
-#include "Bat.h"
+#include <algorithm>
 
+#include "Bat.h"
 #include "Cave.h"
 #include "Context.h"
 #include "Dungeon.h"
@@ -16,13 +17,13 @@ namespace HuntTheWumpus
     {
         if (trigger->Properties().m_carryableByBats)
         {
-            Cave *pCave = m_cave.lock().get();
+            auto pCave = m_cave.lock().get();
 
             // Carry to another spot.
-            int caveId = pCave->GetCaveId();
+            auto caveId = pCave->GetCaveId();
 
-            bool newCaveFound = false;
-            int newCaveId = 0;
+            auto newCaveFound = false;
+            auto newCaveId = 0;
 
             while (!newCaveFound)
             {

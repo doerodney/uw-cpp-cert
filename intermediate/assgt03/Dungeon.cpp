@@ -126,9 +126,9 @@ namespace HuntTheWumpus
         Cave *pDenizenCave = denizen->GetCurrentCave().lock().get();
         std::vector<int> tunnelIds = pDenizenCave->GetConnectedIds();
 
-        int idx = 0;
+        auto idx = 0;
 
-        for(idx = 0; idx < tunnelIds.size(); ++idx)
+        for (idx = 0; idx < tunnelIds.size(); ++idx)
         {
             if(tunnelIds[idx] == destinationCave)
             {
@@ -225,12 +225,11 @@ namespace HuntTheWumpus
 
     void Dungeon::MoveDenizenRandomly(const std::shared_ptr<Denizen>& denizen)
     {
-        Cave *pDenizenCave = denizen->GetCurrentCave().lock().get();
-        std::vector<int> caveTunnels;
+        //Cave *pDenizenCave = denizen->GetCurrentCave().lock().get();
+        auto pDenizenCave = denizen->GetCurrentCave().lock().get();
+        std::vector<int> caveTunnels = pDenizenCave->GetConnectedIds();
 
-        caveTunnels = pDenizenCave->GetConnectedIds();
-
-        int newRandomId = m_providers.m_random.MakeRandomTunnel();
+        auto newRandomId = m_providers.m_random.MakeRandomTunnel();
 
         Move(denizen->GetIdentifier(), caveTunnels[newRandomId]);
     }

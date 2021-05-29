@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Cave.h"
 #include "Denizen.h"
 
@@ -40,7 +42,8 @@ namespace HuntTheWumpus
 
             for (itr = m_denizens.begin(); itr != m_denizens.end(); ++itr)
             {
-                std::shared_ptr<Denizen> denizen = *itr;
+                //std::shared_ptr<Denizen> denizen = *itr;
+                auto denizen = *itr;
 
                 const auto action = denizen->ObserveCaveEntrance(newDenizen);
 
@@ -53,15 +56,27 @@ namespace HuntTheWumpus
         }
     }
 
+    bool identifierPredicate(const Denizen& lhs, const Denizen& rhs) {
+        return (lhs.GetIdentifier() == rhs.GetIdentifier());
+    }
+
     void Cave::RemoveDenizen(const DenizenIdentifier& identifier)
     {
+        /*--The compiler well and truly hated this! --
+        auto itr = std::ranges::find_if(m_denizens.begin(), m_denizens.end(), identifierPredicate);
+        if (itr != m_denizens.end()) {
+            m_denizens.erase(itr);
+        }
+        --*/
+ 
         std::set<std::shared_ptr<Denizen>>::const_iterator itr;
-
         for (itr = m_denizens.begin(); itr != m_denizens.end(); ++itr)
         {
-            std::shared_ptr<Denizen> denizen = *itr;
+            //std::shared_ptr<Denizen> denizen = *itr;
+            auto denizen = *itr;
 
-            const DenizenIdentifier& id = denizen->GetIdentifier();
+            //const DenizenIdentifier& id = denizen->GetIdentifier();
+            auto id = denizen->GetIdentifier();
 
             if (id.m_category == identifier.m_category &&
                 id.m_instance == identifier.m_instance)
@@ -80,11 +95,11 @@ namespace HuntTheWumpus
     {
         std::vector<int> caveIds;
 
-        std::unordered_map<int, std::weak_ptr<Cave>>::const_iterator itr;
+        //std::unordered_map<int, std::weak_ptr<Cave>>::const_iterator itr;
 
-        for(itr = m_tunnels.begin(); itr != m_tunnels.end(); ++itr)
+        for(auto itr = m_tunnels.begin(); itr != m_tunnels.end(); ++itr)
         {
-            int caveId = (*itr).first;
+            auto caveId = (*itr).first;
 
             caveIds.push_back(caveId);
         }
@@ -99,9 +114,10 @@ namespace HuntTheWumpus
         for(itr = m_denizens.begin(); itr != m_denizens.end(); ++itr)
         {
             std::shared_ptr<Denizen> denizen = *itr;
-            const DenizenIdentifier &id = denizen->GetIdentifier();
+            //const DenizenIdentifier &id = denizen->GetIdentifier();
+            auto id = denizen->GetIdentifier();
 
-            if(id.m_category == identifier.m_category)
+            if (id.m_category == identifier.m_category)
             {
                 break;
             }

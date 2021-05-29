@@ -11,7 +11,7 @@ namespace HuntTheWumpus
     Hunter::Hunter(Context& providers)
         : Denizen({ Category::Hunter, 0 }, { true, false, false, true, true }, providers)
     {
-        int arrowIdx = 0;
+        auto arrowIdx = 0;
 
         for (arrowIdx = 0; arrowIdx < 5; ++arrowIdx)
         {
@@ -24,7 +24,8 @@ namespace HuntTheWumpus
 
     std::shared_ptr<Arrow> Hunter::GetArrow()
     {
-        std::shared_ptr<Arrow> result = m_arrows.back();
+        //std::shared_ptr<Arrow> result = m_arrows.back();
+        auto result = m_arrows.back();
         m_arrows.pop_back();
 
         return result;
