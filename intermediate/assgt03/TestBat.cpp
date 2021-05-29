@@ -3,15 +3,13 @@
 #include "Bat.h"
 #include "Cave.h"
 #include "Hunter.h"
+#include "Wumpus.h"
 
 #include "TestHelperTestEnvironment.h"
 
 namespace TestHuntTheWumpus
 {
     TEST(BatSuite, HunterResponse) {
-        // Create a test dungeon:
-        // TestDungeon dungeon;
-
         // Create a test environment:
         TestEnvironment env;
 
@@ -39,6 +37,30 @@ namespace TestHuntTheWumpus
     }
 
     TEST(BatSuite, WumpusResponse) {
+        // Create a test environment:
+        TestEnvironment env;
+
+        // Create a Bat for the cave:
+        int batInstance = 1;
+        const auto bat = std::make_shared<HuntTheWumpus::Bat>(batInstance, env.m_context);
+        // const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
+
+        // Create a Wumpus:
+        auto wumpus = std::make_shared<HuntTheWumpus::Wumpus>(1, env.m_context);
+
+        // Create a Cave:
+        auto cave = std::make_shared<HuntTheWumpus::Cave>(1, env.m_dungeon);
+
+        // Add the bat to the cave:
+        cave->AddDenizen(bat, true);
+        bat->EnterCave(cave);
+
+        // The wumpus enters the cave:
+        wumpus->EnterCave(cave);
+
+        auto moved = bat->ObserveCaveEntrance(wumpus);
+
+        CHECK_EQUAL(false, moved);
 
     }
 
