@@ -10,13 +10,13 @@ namespace TestHuntTheWumpus
 {
     TEST(BatSuite, HunterResponse) {
         // Create a test dungeon:
-        TestDungeon dungeon;
+        // TestDungeon dungeon;
 
         // Create a test environment:
         TestEnvironment env;
 
         // Create a Bat for the cave:
-        int batInstance = 0;
+        int batInstance = 1;
         const auto bat = std::make_shared<HuntTheWumpus::Bat>(batInstance, env.m_context);
         // const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
         
@@ -24,10 +24,10 @@ namespace TestHuntTheWumpus
         const auto hunter = std::make_shared<HuntTheWumpus::Hunter>(env.m_context);
 
         // Create a Cave:
-        auto cave = std::make_shared<HuntTheWumpus::Cave>(1, dungeon);
+        auto cave = std::make_shared<HuntTheWumpus::Cave>(1, env.m_dungeon);
 
         // Add the bat to the cave:
-        // cave->AddDenizen(bat, true);
+        cave->AddDenizen(bat, true);
         bat->EnterCave(cave);
         
         // The hunter enters the cave:

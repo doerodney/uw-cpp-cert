@@ -33,7 +33,7 @@ namespace TestHuntTheWumpus
 
         float m_desiredRandomNumber = 0.0f;
 
-        std::vector<int> m_randomCaveSequence;
+        std::vector<int> m_randomCaveSequence = { 1, 2, 3, 4, 5 };
         std::vector<int>::const_iterator m_sequence = m_randomCaveSequence.end();
 
         TestRandomProvider(const TestRandomProvider&) = delete;
