@@ -126,7 +126,7 @@ namespace HuntTheWumpus
         Cave *pDenizenCave = denizen->GetCurrentCave().lock().get();
         std::vector<int> tunnelIds = pDenizenCave->GetConnectedIds();
 
-        auto idx = 0;
+        std::size_t idx = 0;
 
         for (idx = 0; idx < tunnelIds.size(); ++idx)
         {
@@ -168,7 +168,7 @@ namespace HuntTheWumpus
 
             AddToCave(arrow, pStartCave->GetCaveId(), false);
 
-            int currentStep = 0;
+            std::size_t currentStep = 0;
 
             for(currentStep = 0; currentStep < destinationIds.size(); ++currentStep)
             {
