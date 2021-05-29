@@ -14,7 +14,7 @@ namespace HuntTheWumpus
     {
         if (trigger->Properties().m_isEdible)
         {
-            m_providers.m_change.GameOver(false);
+            m_providers.m_change.GameOver(false);  // Should be true?
 
             return true;
         }
