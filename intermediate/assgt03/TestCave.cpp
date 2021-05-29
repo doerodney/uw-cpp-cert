@@ -12,9 +12,6 @@ namespace TestHuntTheWumpus
 {
     TEST(CaveSuite, Cave_HasDenizens)
     {
-        // Create a test dungeon:
-        TestDungeon dungeon;
-
         // Create a test environment:
         TestEnvironment env;
 
@@ -24,7 +21,7 @@ namespace TestHuntTheWumpus
         const HuntTheWumpus::DenizenIdentifier batId { HuntTheWumpus::Category::Bat, batInstance};
         
         // Create a Cave:
-        HuntTheWumpus::Cave cave(1, dungeon);
+        HuntTheWumpus::Cave cave(1, env.m_dungeon);
 
         // Verify that new cave has no denizens:
         CHECK_EQUAL(false, cave.HasDenizens());
