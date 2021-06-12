@@ -18,17 +18,20 @@ namespace HuntTheWumpus
         // Is this the player coming into the Wumpus' room?
         if (trigger->Properties().m_isEdible)
         {
+            m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::WumpusTriggered);
             const auto moveProb = m_providers.m_random.MakeRandomNumber();
 
             if (moveProb >= 0.25f)
             {
                 const auto curCave = m_cave.lock();
                 curCave->GetDungeon().MoveDenizenRandomly(m_identifier);
+                m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::WumpusAwoken);
                 return true;
             }
 
             // Otherwise it stays put.
-            m_providers.m_change.GameOver(false);
+            m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::HunterEaten);
+            m_providers.m_change.GameOver(true);
 
             return true;
         }

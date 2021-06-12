@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Hunter.h"
 
 #include "Arrow.h"
@@ -21,8 +22,15 @@ namespace HuntTheWumpus
     {
         Denizen::EnterCave(cave);
 
-        // Test adjacent caves for nasty occupants:
+        // Report current and adjacent caves:
         const std::vector<int> ids = cave->GetConnectedIds();
+        std::cout << "Welcome to cave " << cave->GetCaveId() << " ." << std::endl;
+        std::cout << "Adjacent caves are:";
+        for (auto id : ids) {
+            std::cout << id << std::endl; 
+        }
+    
+        // Test adjacent caves for nasty occupants:
         const std::vector<int> serials = {0, 1};
         bool adjBat = false;
         bool adjPit = false;
@@ -84,5 +92,4 @@ namespace HuntTheWumpus
 
         return false;
     }
-
 }

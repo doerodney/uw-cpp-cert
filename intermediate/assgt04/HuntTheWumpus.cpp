@@ -50,7 +50,13 @@ HuntTheWumpus::UserNotification MakeUserNotifications()
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ObserveWumpus, [] () { std::cout << "I smell a wumpus!" << std::endl; } );
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ObserveBat, [] () { std::cout << "Bats nearby!" << std::endl; } );
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ObservePit, [] () { std::cout << "I feel a draft!" << std::endl; } );
-    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::BatTriggered, [] () { std::cout << " This cave has a bat!" << std::endl; } );
+    
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::BatTriggered, [] () { std::cout << "You have been grabbed by a bat!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::PitTriggered, [] () { std::cout << "You have been stepped into a pit!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusTriggered, [] () { std::cout << "There is a wumpus in this cave!" << std::endl; } );
+    
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::HunterEaten, [] () { std::cout << "You have been eaten by the wumpus!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusAwoken, [] () { std::cout << "You have awakened the wumpus!" << std::endl; } );
 
     return notifier;
 }

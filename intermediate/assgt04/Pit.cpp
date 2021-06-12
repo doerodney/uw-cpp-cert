@@ -14,6 +14,7 @@ namespace HuntTheWumpus
     {
         if (trigger->Properties().m_isEdible)
         {
+            m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::PitTriggered);
             m_providers.m_change.GameOver(false);
 
             return true;
