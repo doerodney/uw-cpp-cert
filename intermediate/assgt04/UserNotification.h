@@ -14,6 +14,7 @@ namespace HuntTheWumpus
         {
             ObserveWumpus,
             ObservePit,
+            ObserveBat,
             ObserveMiss,
             ObserveOutOfArrows,
             BatTriggered,
@@ -41,6 +42,7 @@ namespace HuntTheWumpus
         UserNotification& operator=(UserNotification&&) = default;
 
     private:
-        std::map<Notification, std::function<void()> > m_notifications;
+
+       std::map<Notification, std::function<void()> > m_notifications;
     };
 }

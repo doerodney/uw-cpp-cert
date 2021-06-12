@@ -10,10 +10,9 @@ namespace HuntTheWumpus
         m_notifications[category] = callback;
     }
 
-
     void UserNotification::Notify(Notification category) const 
     {
-        // Extract callback function from map and invoke:
+        // Extract callback from map and invoke:
         auto func = m_notifications.at(category);
         func();
     }
