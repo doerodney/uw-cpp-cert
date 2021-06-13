@@ -57,6 +57,10 @@ HuntTheWumpus::UserNotification MakeUserNotifications()
     
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::HunterEaten, [] () { std::cout << "You have been eaten by the wumpus!" << std::endl; } );
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusAwoken, [] () { std::cout << "You have awakened the wumpus!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusShot, [] () { std::cout << "You went into a cave where you did not belong and murdered a sleeping wumpus!" << std::endl; } );
+
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::HunterShot, [] () { std::cout << "You arrogant fool - you shot yourself!  Duh!" << std::endl; } );
+
 
     return notifier;
 }

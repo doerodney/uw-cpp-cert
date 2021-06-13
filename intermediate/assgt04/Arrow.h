@@ -2,6 +2,7 @@
 
 #include "Denizen.h"
 
+
 namespace HuntTheWumpus
 {
     class Arrow final : public Denizen
@@ -11,7 +12,7 @@ namespace HuntTheWumpus
         ~Arrow() override = default;
 
         int GetPriority() const override { return 2; }
-
+        
         Arrow(const Arrow&) = delete;
         Arrow(Arrow&&) = delete;
         Arrow& operator=(const Arrow&) = delete;

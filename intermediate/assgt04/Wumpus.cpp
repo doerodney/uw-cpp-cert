@@ -39,6 +39,7 @@ namespace HuntTheWumpus
         // Is this an arrow that shot us?
         if (trigger->Properties().m_fatalToWumpus)
         {
+            m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::WumpusShot);
             m_providers.m_change.GameOver(true);
 
             return true;

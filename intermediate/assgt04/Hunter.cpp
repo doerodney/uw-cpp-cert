@@ -85,6 +85,14 @@ namespace HuntTheWumpus
     {
         if (trigger->Properties().m_fatalToHunter)
         {
+            DenizenIdentifier wumpusId {HuntTheWumpus::Category::Wumpus, 0};
+            if (trigger->GetIdentifier() == wumpusId) {
+                m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::HunterEaten);
+            } else {
+                m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::HunterShot);
+            }
+
+
             m_providers.m_change.GameOver(false);
 
             return true;
