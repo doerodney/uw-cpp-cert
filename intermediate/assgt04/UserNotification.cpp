@@ -1,5 +1,5 @@
 #include "UserNotification.h"
-
+#include <algorithm>  // find
 #include <stdexcept>
 
 namespace HuntTheWumpus
@@ -12,8 +12,21 @@ namespace HuntTheWumpus
 
     void UserNotification::Notify(Notification category) const 
     {
+#ifdef UNITTEST_BUILD
+        // Log the notification:
+        m_notificationLog.push_back(category);
+#endif
         // Extract callback from map and invoke:
         auto func = m_notifications.at(category);
         func();
+    }
+
+    void UserNotification::ClearNotificationLog() {
+        m_notificationLog.clear();
+    }        
+    
+    bool UserNotification::HasLoggedNotification(Notification category) const {        
+        auto it = find(m_notificationLog.begin(), m_notificationLog.end(), category);
+        return (it != m_notificationLog.end());
     }
 }
