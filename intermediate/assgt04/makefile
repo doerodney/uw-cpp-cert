@@ -3,8 +3,11 @@ CFLAGS = -g -Wall -O3 -std=c++2a
 
 default: unittests
 
+hunt: Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Hunter.o HuntTheWumpus.o Pit.o UserNotification.o Wumpus.o 
+	$(CC) $(CFLAGS) -o hunt Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Hunter.o HuntTheWumpus.o Pit.o UserNotification.o Wumpus.o 
+
 unittests: Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o HuntTheWumpus.o Pit.o TestArrow.o TestBat.o TestCave.o Test.o TestDungeon.o TestHelperTestEnvironment.o TestHunter.o TestPit.o TestRegistry.o TestResult.o TestThingInCave.o TestWumpus.o unittests.o UserNotification.o WFailure.o Wumpus.o 
-	$(CC) $(CFLAGS) -o unittests Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o HuntTheWumpus.o Pit.o TestArrow.o TestBat.o TestCave.o Test.o TestDungeon.o TestHelperTestEnvironment.o TestHunter.o TestPit.o TestRegistry.o TestResult.o TestThingInCave.o TestWumpus.o unittests.o UserNotification.o WFailure.o Wumpus.o 
+	$(CC) $(CFLAGS) -D UNITTEST_BUILD -o unittests Arrow.o Bat.o Cave.o Denizen.o Dungeon.o Failure.o Hunter.o HuntTheWumpus.o Pit.o TestArrow.o TestBat.o TestCave.o Test.o TestDungeon.o TestHelperTestEnvironment.o TestHunter.o TestPit.o TestRegistry.o TestResult.o TestThingInCave.o TestWumpus.o unittests.o UserNotification.o WFailure.o Wumpus.o 
 
 Arrow.o: Arrow.cpp Arrow.h Denizen.h
 	$(CC) $(CFLAGS) -c Arrow.cpp

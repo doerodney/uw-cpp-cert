@@ -145,6 +145,8 @@ namespace HuntTheWumpus
             if (LegalMove(hunter, destinationIds.front()))
             {
                 Move(hunter->GetIdentifier(), destinationIds.front());
+            } else {
+                m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::ReportIllegalMove);
             }
         }
 
@@ -180,6 +182,10 @@ namespace HuntTheWumpus
             arrow->RemoveFromCave();
             currentArrowCave->RemoveDenizen(arrow->GetIdentifier());
             m_caveDenizens.erase(arrow->GetIdentifier());
+
+            if (hunter->OutOfArrows()) {
+                m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::ObserveOutOfArrows);
+            }
 
             if (m_providers.m_change.IsPlaying())
             {

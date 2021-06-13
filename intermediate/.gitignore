@@ -2,5 +2,7 @@
 *.cc
 *.log
 *.7z
+*.swp
 unittests
+hunt
 

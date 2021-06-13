@@ -52,16 +52,16 @@ HuntTheWumpus::UserNotification MakeUserNotifications()
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ObservePit, [] () { std::cout << "I feel a draft!" << std::endl; } );
     
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::BatTriggered, [] () { std::cout << "You have been grabbed by a bat!" << std::endl; } );
-    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::PitTriggered, [] () { std::cout << "You have been stepped into a pit!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::PitTriggered, [] () { std::cout << "You have stepped into a pit!" << std::endl; } );
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusTriggered, [] () { std::cout << "There is a wumpus in this cave!" << std::endl; } );
     
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::HunterEaten, [] () { std::cout << "You have been eaten by the wumpus!" << std::endl; } );
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusAwoken, [] () { std::cout << "You have awakened the wumpus!" << std::endl; } );
-    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusShot, [] () { std::cout << "You went into a cave where you did not belong and murdered a sleeping wumpus!" << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::WumpusShot, [] () { std::cout << "You went into a cave where you did not belong and murdered a sleeping wumpus!  You are such a bad ass." << std::endl; } );
 
     notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::HunterShot, [] () { std::cout << "You arrogant fool - you shot yourself!  Duh!" << std::endl; } );
-
-
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ObserveOutOfArrows, [] () { std::cout << "You are out of arrows! Prepare to suffer a slow, painful death." << std::endl; } );
+    notifier.AddCallback(HuntTheWumpus::UserNotification::Notification::ReportIllegalMove, [] () { std::cout << "Illegal move!" << std::endl; } );
     return notifier;
 }
 
@@ -107,6 +107,7 @@ std::vector<std::string> SplitString(const std::string& text, const std::string&
     return tokens;
 }
 
+
 int main()
 {
     RandomCave sourceOfRandom;
@@ -116,6 +117,13 @@ int main()
     HuntTheWumpus::Context gameContext{ notifier, sourceOfRandom, change };
 
     HuntTheWumpus::Dungeon dungeon(gameContext);
+
+#ifdef UNITTEST_BUILD
+    srand(::time t(NULL));
+
+    TestResult tr;
+    TestRegistry::runAllTests(tr);
+#else
 
     while (change.IsPlaying())
     {
@@ -180,6 +188,7 @@ int main()
             change.GameOver(false);
         }
     }
+#endif
 
     return 0;
 }

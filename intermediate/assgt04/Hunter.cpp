@@ -24,8 +24,8 @@ namespace HuntTheWumpus
 
         // Report current and adjacent caves:
         const std::vector<int> ids = cave->GetConnectedIds();
-        std::cout << "Welcome to cave " << cave->GetCaveId() << " ." << std::endl;
-        std::cout << "Adjacent caves are:";
+        std::cout << "Welcome to cave " << cave->GetCaveId() << "." << std::endl;
+        std::cout << "Adjacent caves are:" << std::endl;
         for (auto id : ids) {
             std::cout << id << std::endl; 
         }
