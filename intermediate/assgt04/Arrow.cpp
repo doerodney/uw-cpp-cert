@@ -1,4 +1,5 @@
 #include "Arrow.h"
+#include "Context.h"
 
 namespace HuntTheWumpus
 {
@@ -6,4 +7,5 @@ namespace HuntTheWumpus
         : Denizen(DenizenIdentifier{ Category::Arrow, arrowInstance }, { false, true, true, false, false }, providers)
     {       
     }
+
 }

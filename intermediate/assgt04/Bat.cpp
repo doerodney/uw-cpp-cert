@@ -22,6 +22,10 @@ namespace HuntTheWumpus
             // Handle Req 13: Report the presence of a bat.
             m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::BatTriggered);
 
+            // Handle Req13:  Report the presence of a bat.
+            m_providers.m_notification.Notify(HuntTheWumpus::UserNotification::Notification::BatTriggered);
+
+
             // Carry to another spot.
             const auto caveId = cave->GetCaveId();
 

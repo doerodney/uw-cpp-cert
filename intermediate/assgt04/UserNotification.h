@@ -1,7 +1,8 @@
 #pragma once
 
 #include <functional>
-#include <map>
+#include <map>  // notifications
+#include <vector>  // notification log
 
 namespace HuntTheWumpus
 {
@@ -14,6 +15,7 @@ namespace HuntTheWumpus
         {
             ObserveWumpus,
             ObservePit,
+            ObserveBat,
             ObserveMiss,
             ObserveOutOfArrows,
             BatTriggered,
@@ -34,6 +36,8 @@ namespace HuntTheWumpus
         void AddCallback(Notification category, std::function<void()>&& callback);
 
         void Notify(Notification category) const;
+        void ClearNotificationLog();
+        bool HasLoggedNotification(Notification category) const;
 
         UserNotification(const UserNotification&) = default;
         UserNotification(UserNotification&&) = default;
@@ -41,6 +45,8 @@ namespace HuntTheWumpus
         UserNotification& operator=(UserNotification&&) = default;
 
     private:
-        std::map<Notification, std::function<void()> > m_notifications;
+
+       std::map<Notification, std::function<void()> > m_notifications;
+       std::vector<Notification> m_notificationLog;
     };
 }
