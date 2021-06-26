@@ -2,7 +2,6 @@
 
 #include "Denizen.h"
 
-#include "Dungeon.h"
 #include <memory>
 #include <set>
 #include <unordered_map>
@@ -10,7 +9,7 @@
 
 namespace HuntTheWumpus
 {
-    // class IDungeon;
+    class IDungeon;
 
     struct CompareThings
     {
@@ -33,6 +32,7 @@ namespace HuntTheWumpus
 
         void AddDenizen(const std::shared_ptr<Denizen> &newDenizen, bool observeEntrance);
         void RemoveDenizen(const DenizenIdentifier &identifier);
+        void ReportDenizens() const;
 
         bool HasDenizens() const { return !m_denizens.empty(); }
         bool HasDenizen(const DenizenIdentifier &identifier) const;

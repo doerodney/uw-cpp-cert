@@ -1,14 +1,10 @@
 #pragma once
 
-#include "GameStateObservation.h"
-#include "RandomProvider.h"
-#include "UserNotification.h"
-
 namespace HuntTheWumpus
 {
-    // class UserNotification;
-    // class IRandomProvider;
-    // class IGameStateChange;
+    class UserNotification;
+    class IRandomProvider;
+    class IGameStateChange;
 
     struct Context
     {

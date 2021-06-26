@@ -4,6 +4,7 @@
 
 #include "Cave.h"
 #include "Context.h"
+#include "UserNotification.h"
 #include "GameStateObservation.h"
 
 namespace HuntTheWumpus
@@ -21,17 +22,11 @@ namespace HuntTheWumpus
     {
         Denizen::EnterCave(cave);
 
-        bool adjacentPit = false;
-        bool adjacentBat = false;
-        bool adjacentWumpus = false;
+        m_providers.m_notification.Notify(UserNotification::Notification::CaveEntered, cave->GetCaveId());
 
-        //HuntTheWumpus::IDungeon& dungeon = cave->GetDungeon();
-        const auto dungeon = cave->GetDungeon();
-        std::vector<int> connectedIds = cave->GetConnectedIds();
-        for (auto id : connectedIds) {
-            const std::shared_ptr<Cave>& cave = dungeon.FindCave(id);
-            const auto cave = dungeon.FindCave(id)
-        }
+        const auto neighbors = cave->GetConnectedIds();
+
+        m_providers.m_notification.Notify(UserNotification::Notification::NeighboringCaves, neighbors);
     }
 
     std::shared_ptr<Arrow> Hunter::GetArrow()
@@ -46,6 +41,17 @@ namespace HuntTheWumpus
     {
         if (trigger->Properties().m_fatalToHunter)
         {
+            if (trigger->Properties().m_fatalToWumpus)
+            {
+                // This is an arrow, as those are fatal to both.
+                m_providers.m_notification.Notify(UserNotification::Notification::HunterShot);
+            }
+            else
+            {
+                // This is the Wumpus entering.
+                m_providers.m_notification.Notify(UserNotification::Notification::HunterEaten);
+            }
+
             m_providers.m_change.GameOver(false);
 
             return true;
