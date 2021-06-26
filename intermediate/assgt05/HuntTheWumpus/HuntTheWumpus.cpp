@@ -213,10 +213,10 @@ int main()
             }
 
             // Second token is a destination.
+            // const auto destCave = std::stoi(stringTokens[1]);
             int destCave = 0;
             validInput = parseInt(stringTokens[1], destCave);
             if (validInput) {
-                // const auto destCave = std::stoi(stringTokens[1]);
                 dungeon.MakeMove(HuntTheWumpus::DungeonMove::Move, { destCave });
             }
         }

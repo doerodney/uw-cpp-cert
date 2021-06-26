@@ -15,6 +15,7 @@
 
 // ReSharper disable once CppUnusedIncludeDirective
 #include <algorithm>
+#include <stdexcept>
 
 namespace HuntTheWumpus
 {
@@ -142,6 +143,11 @@ namespace HuntTheWumpus
 
         if (operation == DungeonMove::Move)
         {
+            // Test if the destination id vector is empty for a hunter move:
+            if (destinationIds.empty()) {
+                throw std::runtime_error {"No destination cave specified for hunter move"};
+            }
+
             // Check move validity.
             if (LegalMove(hunter, destinationIds.front()))
             {
@@ -155,6 +161,11 @@ namespace HuntTheWumpus
 
         if (operation == DungeonMove::Shoot)
         {
+            // Test if the destination id vector is empty for the arrow launch:
+            if (destinationIds.empty()) {
+                throw std::runtime_error{ "No destination cave(s) specified for the arrow launch" };
+            }
+
             // Retrieve an arrow.
             auto arrow = hunter->GetArrow();
 
